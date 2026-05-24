@@ -261,6 +261,8 @@ public class DatabaseAdapter extends MyEntityManager {
             transaction.id = transactionId;
             transaction.splits = splits;
             insertSplits(transaction);
+            updateAccountLastTransactionDate(transaction.fromAccountId);
+            updateAccountLastTransactionDate(transaction.toAccountId);
             db.setTransactionSuccessful();
             return transactionId;
         } finally {
